@@ -1,5 +1,5 @@
-export interface IRequest<T> {
-  params?: string;
+export interface IRequest<T = any> {
+  params?: string | any;
   body?: T;
-  query?: string;
+  query?: string | any;
 }

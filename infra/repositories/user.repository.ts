@@ -10,9 +10,7 @@ export class UserRepository implements IUserRepository {
   async createUser(data: UserEntity): Promise<UserEntity> {
     const userColletion = MongoHelper.getCollection("users");
     const user = await userColletion.insertOne(data);
-
     const dataToReturn = await this.findUserById(user.insertedId.toHexString());
-
     return dataToReturn;
   }
 

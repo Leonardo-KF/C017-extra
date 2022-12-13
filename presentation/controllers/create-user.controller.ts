@@ -1,7 +1,6 @@
 import { IController } from "./abstract/controller";
 import { UserInputData } from "../../data/types/input";
 import { UserOutputData } from "../../data/types/output";
-import { UserInputEntity } from "../../domain/entities/input-data/user-input.entity";
 import { IRequest } from "./abstract/request";
 import { IResponse } from "./abstract/response";
 import { ICreateUserUseCase } from "../../domain/use-cases/create-user.usecase";
@@ -11,8 +10,8 @@ export class CreateUserController
 {
   constructor(private readonly createUserUseCase: ICreateUserUseCase) {}
   async handle(
-    request: IRequest<UserInputEntity>
-  ): Promise<IResponse<UserInputEntity>> {
+    request: IRequest<UserInputData>
+  ): Promise<IResponse<UserOutputData>> {
     if (!request.body) {
       throw new Error("Request body is required");
     }
