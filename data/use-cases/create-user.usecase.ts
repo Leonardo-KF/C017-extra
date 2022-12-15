@@ -11,6 +11,9 @@ export class CreateUserUseCase implements ICreateUserUseCase {
     private readonly hashGenerator: IHashGenerator
   ) {}
   async execute(data: UserInputData): Promise<UserOutputData> {
+    if (!data.email || !data.password || !data.name) {
+      throw new Error("Missing params");
+    }
     const hashedPassword = await this.hashGenerator.hash(data.password, 10);
     const user: UserOutputData = {
       id: randomUUID(),
